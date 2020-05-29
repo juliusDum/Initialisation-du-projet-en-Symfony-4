@@ -6,8 +6,14 @@
     <h1>Toutes les séries de la table program : </h1>
     {% for program in programs %}
         <div>
+            <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
             <p>{{ program.summary }}</p>
+            <a href="{{ path('show_program', { slug: program.title }) }}">
+                Saisons
+            </a>
+            <br>
+            <br>
         </div>
     {% else %}
         Aucune série trouvée.

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="media">
+    <div class="media-body">
+        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <p>{{ program.summary }}</p>
+        <p>Categorie: {{ program.category.name }}</p>
+        {% for season in seasons %}
+            <ul>
+               <li><a href="{{ path('wild_season', {'id': season.id})}}">Saison:{{ season.number }}</a></li>
+            </ul>
+
+        {% endfor %}
+        <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+    </div>
+{% endblock %}
