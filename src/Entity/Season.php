@@ -20,12 +20,6 @@ class Season
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $program;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $number;
@@ -49,6 +43,12 @@ class Season
     {
         $this->episodes = new ArrayCollection();
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $program;
 
     public function getId(): ?int
     {
