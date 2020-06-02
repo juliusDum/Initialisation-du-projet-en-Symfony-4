@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>{{ actor.name }}</h1>
+    {% for program in programs %}
+    <div>
+        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+        <p>{{ program.summary }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
