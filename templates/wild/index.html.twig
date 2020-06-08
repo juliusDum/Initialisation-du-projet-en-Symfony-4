@@ -8,6 +8,13 @@
         <div>
             <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+            </tr>
+            <strong>Acteurs :</strong>
+            {% for actor in program.actors %}
+                <li>{{ actor.name }} </li>
+            {% else %}
+                <li>Aucun acteur pour cette série</li>
+            {% endfor %}
             <p>{{ program.summary }}</p>
             <a href="{{ path('show_program', { slug: program.title }) }}">
                 Saisons
