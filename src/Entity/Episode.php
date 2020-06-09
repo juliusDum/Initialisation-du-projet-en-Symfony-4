@@ -90,4 +90,8 @@ class Episode
 
         return $this;
     }
+
+    public function setSlug(string $slug)
+    {
+    }
 }

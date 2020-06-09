@@ -76,4 +76,12 @@ class Actor
 
         return $this;
     }
+
+    public function getTitle()
+    {
+    }
+
+    public function setSlug(string $slug)
+    {
+    }
 }

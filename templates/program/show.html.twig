@@ -21,19 +21,7 @@
             </tr>
             <tr>
                 <th>Poster</th>
-                <td>{{ program.poster }}</td>
-            </tr>
-            <tr>
-                <th>Synopsis</th>
-                <td>{{ program.synopsis }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ program.country }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ program.year }}</td>
+                <td><img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }}"></td>
             </tr>
             <strong>Acteur :</strong>
             <ul>
@@ -48,7 +36,7 @@
 
     <a href="{{ path('program_index') }}">back to list</a>
 
-    <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
+    <a href="{{ path('program_edit', {'slug': program.slug}) }}">edit</a>
 
     {{ include('program/_delete_form.html.twig') }}
 {% endblock %}
