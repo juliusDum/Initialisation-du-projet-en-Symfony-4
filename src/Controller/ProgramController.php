@@ -9,7 +9,10 @@ use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 /**
  * @Route("/program")
@@ -32,9 +35,11 @@ class ProgramController extends AbstractController
      * @Route("/new", name="program_new", methods={"GET","POST"})
      * @param Request $request
      * @param Slugify $slugify
+     * @param MailerInterface $mailer
      * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function new(Request $request, Slugify $slugify): Response
+    public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -47,7 +52,23 @@ class ProgramController extends AbstractController
             $entityManager->persist($program);
             $entityManager->flush();
 
-            return $this->redirectToRoute('program_index');
+            $email = (new TemplatedEmail())
+                ->from($this->getParameter('mailer_from'))
+                ->to('jules.testphp@gmail.com')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html('<p>Une nouvelle série vient d\'être publiée sur Wild Séries !</p>')
+                ->htmlTemplate('email/notification.html.twig')
+                ->context(['program' => $program]);
+
+                $mailer->send($email);
+
+            $content = $this->renderView('email/notification.html.twig', [
+                'program' => $program
+            ]);
+
+            return new Response($content);
+
+                //return $this->redirectToRoute('program_index');
         }
 
         return $this->render('program/new.html.twig', [
