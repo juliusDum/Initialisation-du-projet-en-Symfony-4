@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1> Un nouvelle série a été ajoutée!</h1>
+    <div style="border: solid #222222; border-radius: 10px; display: flex; align-items: flex-start; flex-direction: column;">
+        <img style="align-self: center; max-width: 18rem;" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <div>
+            <h1 style="text-align: center">{{ program.title }}</h1>
+            <p style="align-self: center">{{ program.summary }}</p>
+            <p style="align-self: center"><strong>Catégorie : </strong>{{ program.category.name }}</p>
+            <a href="{{ path('program_show', {'slug': program.slug}) }}" class="btn btn-primary">Voir</a>
+        </div>
+    </div>
+{% endblock %}
