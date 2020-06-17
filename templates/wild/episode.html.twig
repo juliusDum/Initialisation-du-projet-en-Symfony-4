@@ -1,14 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="card col-6" >
-        <div class="card-body">
-            <h1 class=" card-title">Saison{{ season.number }} de {{ program.title }} ({{ season.year }})</h1>
-            <p class="card-text">{{ episode.number }}: {{ episode.title }} </p>
-            <p class="card-text">{{ episode.synopsis }} </p>
+    <div class="container col-5">
+        <div class="card bg-light mb-3">
+            <div class="card-header"><h1 class="text-info">Saison{{ season.number }} de {{ program.title }} ({{ season.year }})</h1></div>
+            <div class="card-body">
+                <h2 class="card-text text-secondary">{{ episode.number }}: {{ episode.title }}</h2>
+                <p class="card-text">{{ episode.synopsis }} </p>
+                <br>
+                <h2 class="text-center text-secondary">Commentaires</h2>
+                <br>
+                {% for comment in episode.comments %}
+                <div class="card container" style="width: 20rem;">
+                    <div class="card-body">
+                        <h5 class="text-primary">{{ user.email }}</h5>
+                        <p class="card-text">{{  comment.comment }}</p>
+                    </div>
+                </div>
+                {% else %}
+                    <li>Aucun commentaire pour cet épisode</li>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <a href="{{ path('wild_index') }}">
-        Retour à l'accueil
-    </a>
-{% endblock %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p>
+                {{ include('comment/_form.html.twig') }}
+            </p>
+        {% endif %}
+        <div class="container col-2">
+        <a class="btn btn-info" href="{{ path('wild_index') }}">Retour à l'accueil</a>
+        </div>
+
+    {% endblock %}
