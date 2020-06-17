@@ -15,5 +15,11 @@
                 <a class="nav-link" href="{{ path('show_category', { 'categoryName': "horror" }) }}">Horror</a>
             </li>
         </ul>
+        {% if app.user %}
+            {{ app.user.email }}
+            <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+        {% else %}
+            <a href="{{ path('app_login') }}"> Se connecter</a>
+        {% endif %}
     </div>
 </nav>

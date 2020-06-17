@@ -1,0 +1,8 @@
+{% block body %}
+    <div class="card text-white bg-info col-4 container">
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+    </div>
+{% endblock %}
