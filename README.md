@@ -7,4 +7,4 @@ video symfony14 loom: https://www.loom.com/share/f011f6e5eafc4c9894303aa94c9b601
 video symfony15 loom: https://www.loom.com/share/7da07b6131e44dffb99235aab37048c4
 video symfony18 loom: https://www.loom.com/share/cf04807e9c69428f81483c47e65ae05a
 video symfony16 loom: https://www.loom.com/share/af9257b010aa4ac289b2035373ed9703
-
+video symfony20 loom: https://www.loom.com/share/41bc98e188714a49a19749d994603263
