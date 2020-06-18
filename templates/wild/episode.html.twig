@@ -8,6 +8,7 @@
                 <h2 class="card-text text-secondary">{{ episode.number }}: {{ episode.title }}</h2>
                 <p class="card-text">{{ episode.synopsis }} </p>
                 <br>
+                {% if is_granted("ROLE_SUBSCRIBER") %}
                 <h2 class="text-center text-secondary">Commentaires</h2>
                 <br>
                 {% for comment in episode.comments %}
@@ -20,6 +21,7 @@
                 {% else %}
                     <li>Aucun commentaire pour cet épisode</li>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
