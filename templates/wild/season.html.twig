@@ -1,20 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="card col-6" >
+    <div class="card col-6 container" >
         <div class="card-body">
                 <h1 class=" card-title">Saison{{ seasons.number }} de {{ program.title }} ({{ seasons.year }})</h1>
                 <p class="card-text">{{ seasons.description }}</p>
+            <br>
                 <p class="card-text">Liste des episodes: </p>
             {% for episode in episodes %}
                 <ul>
                    <li><a href="{{ path('show_episode', {'id': episode.id})}}">Episode:{{ episode.number }}: {{ episode.title }}</a></li>
                 </ul>
+            {% else %}
+                <li>Aucun épisode pour cette saison!</li>
             {% endfor %}
         </div>
     </div>
-
-    <a href="{{ path('wild_index') }}">
-        retour à l'acceuil
-    </a>
+    <br>
+    <div class="container col-1 ">
+    <a class="btn btn-info" href="{{ path('wild_index') }}">retour à l'acceuil</a>
+    </div>
 {% endblock %}

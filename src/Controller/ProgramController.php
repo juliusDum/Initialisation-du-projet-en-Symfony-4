@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,6 +34,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/new", name="program_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Slugify $slugify
      * @param MailerInterface $mailer
@@ -91,6 +93,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="program_edit", methods={"GET","POST"})
+     * @isGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Program $program
      * @param Slugify $slugify
